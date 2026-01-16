@@ -1,0 +1,71 @@
+{
+  "version": "8.9.0",
+  "objects": [
+    {
+      "type": "dashboard",
+      "id": "fraud-detection-main",
+      "attributes": {
+        "title": "🚨 Fraud Detection - Ana Dashboard",
+        "description": "Gerçek zamanlı dolandırıcılık tespiti ve analitik dashboard",
+        "gridData": {
+          "w": 48,
+          "h": 26
+        },
+        "timeRestore": true,
+        "timeFrom": "now-24h",
+        "timeTo": "now",
+        "refreshInterval": {
+          "pause": false,
+          "value": 10000
+        }
+      }
+    },
+    {
+      "type": "dashboard",
+      "id": "fraud-detection-locations",
+      "attributes": {
+        "title": "📍 Fraud Detection - Konum Analizi",
+        "description": "Şehir ve konum başına dolandırıcılık analizi",
+        "gridData": {
+          "w": 48,
+          "h": 20
+        },
+        "timeRestore": true,
+        "timeFrom": "now-7d",
+        "timeTo": "now",
+        "refreshInterval": {
+          "pause": false,
+          "value": 30000
+        }
+      }
+    },
+    {
+      "type": "dashboard",
+      "id": "fraud-detection-channels",
+      "attributes": {
+        "title": "📱 Fraud Detection - Kanal Analizi",
+        "description": "İşlem kanalı başına dolandırıcılık oranı",
+        "gridData": {
+          "w": 48,
+          "h": 20
+        }
+      }
+    },
+    {
+      "type": "dashboard",
+      "id": "fraud-detection-alerts",
+      "attributes": {
+        "title": "🚨 Fraud Detection - Yüksek Risk Uyarıları",
+        "description": "ML modeline göre yüksek risk işlemleri",
+        "gridData": {
+          "w": 48,
+          "h": 25
+        },
+        "refreshInterval": {
+          "pause": false,
+          "value": 5000
+        }
+      }
+    }
+  ]
+}
