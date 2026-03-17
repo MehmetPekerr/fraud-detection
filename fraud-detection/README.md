@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # 🚨 Fraud Detection Sistemi
 ## Kafka + Elasticsearch + Kibana ile Gerçek Zamanlı Dolandırıcılık Tespiti
 
@@ -29,81 +28,10 @@ Bu proje, Kafka aracılığıyla gelen banka işlemlerini analiz ederek dolandı
 │                    [Alert & Reports]                      │
 │                                                            │
 └──────────────────────────────────────────────────────────┘
-=======
-# 🚨 Fraud Detection System
-
-<div align="center">
-
-![Python](https://img.shields.io/badge/Python-3.8+-3776AB?style=for-the-badge&logo=python&logoColor=white)
-![Apache Kafka](https://img.shields.io/badge/Apache%20Kafka-231F20?style=for-the-badge&logo=apachekafka&logoColor=white)
-![Elasticsearch](https://img.shields.io/badge/Elasticsearch-005571?style=for-the-badge&logo=elasticsearch&logoColor=white)
-![Kibana](https://img.shields.io/badge/Kibana-005571?style=for-the-badge&logo=kibana&logoColor=white)
-![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
-![scikit-learn](https://img.shields.io/badge/scikit--learn-F7931E?style=for-the-badge&logo=scikit-learn&logoColor=white)
-![License](https://img.shields.io/badge/License-MIT-green?style=for-the-badge)
-
-**Real-time financial fraud detection powered by Kafka, Elasticsearch, and Machine Learning.**
-
-[Features](#-features) • [Architecture](#-architecture) • [Quick Start](#-quick-start) • [Usage](#-usage) • [Tech Stack](#-tech-stack)
-
-</div>
-
----
-
-## 📌 Overview
-
-This is a **Big Data streaming pipeline** that detects fraudulent bank transactions in real time. Synthetic transaction data is produced to **Apache Kafka**, consumed by a **Python ML service** (Isolation Forest), and the enriched results — including fraud labels, anomaly scores, and risk levels — are indexed into **Elasticsearch** for visualization on **Kibana dashboards**.
-
-> 💡 Built as a hands-on demonstration of real-time fraud detection using open-source technologies.
-
----
-
-## ✨ Features
-
-| Feature | Description |
-|---|---|
-| 🔄 **Real-time Streaming** | End-to-end pipeline via Apache Kafka |
-| 🤖 **ML Anomaly Detection** | Isolation Forest with configurable contamination rate |
-| 📊 **Live Dashboards** | Pre-built Kibana visualizations |
-| 🗺️ **Geographic Analysis** | City-level fraud distribution across Turkish cities |
-| ⚡ **Multi-channel Support** | ATM, Online, Mobile, Branch, Wire, Crypto |
-| 🐳 **Dockerized** | One-command infrastructure setup |
-| 🧩 **4 Fraud Patterns** | Fan-out, Impossible movement, Rapid-fire bot, Profile mismatch |
-
----
-
-## 🏗️ Architecture
-
-```
-┌─────────────────────────────────────────────────────────────────┐
-│                     FRAUD DETECTION SYSTEM                      │
-├─────────────────────────────────────────────────────────────────┤
-│                                                                   │
-│  ┌──────────────────┐    ┌────────────┐    ┌─────────────────┐  │
-│  │  Synthetic Data  │───▶│   Kafka    │───▶│ Kafka Consumer  │  │
-│  │  Generator       │    │  Producer  │    │ + ML Model      │  │
-│  └──────────────────┘    └────────────┘    │ + Feature Eng.  │  │
-│                                             └────────┬────────┘  │
-│                                                      │           │
-│                                                      ▼           │
-│                                          ┌───────────────────┐  │
-│                                          │  Elasticsearch    │  │
-│                                          │  (transactions)   │  │
-│                                          └─────────┬─────────┘  │
-│                                                    │            │
-│                                                    ▼            │
-│                                          ┌───────────────────┐  │
-│                                          │ Kibana Dashboard  │  │
-│                                          │ Real-time Viz     │  │
-│                                          │ Alerts & Reports  │  │
-│                                          └───────────────────┘  │
-└─────────────────────────────────────────────────────────────────┘
->>>>>>> 793ecd6 (feat: real-time fraud detection system with Kafka, Elasticsearch & ML)
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 🚀 Başlangıç Rehberi
 
 ### 1️⃣ Ön Koşullar
@@ -385,136 +313,10 @@ fraud-detection/
     ├── producer.py             # Kafka producer
     ├── consumer.py             # Kafka consumer + ES writer
     └── setup_kibana.py         # Kibana kurulumu
-=======
-## 🚀 Quick Start
-
-### Prerequisites
-
-- **Docker** & **Docker Compose**
-- **Python 3.8+**
-- **Git**
-
-### 1. Clone & Setup
-
-```bash
-git clone https://github.com/MehmetPekerr/fraud-detection.git
-cd fraud-detection/fraud-detection
-
-# Create virtual environment
-python -m venv venv
-
-# Activate (Windows)
-venv\Scripts\activate
-
-# Activate (Linux/Mac)
-source venv/bin/activate
-
-# Install dependencies
-pip install -r requirements.txt
-```
-
-### 2. Start Infrastructure
-
-```bash
-docker-compose up -d
-```
-
-This starts: **Zookeeper → Kafka → Elasticsearch → Kibana**
-
----
-
-## 📖 Usage
-
-### Step 1 — Generate Synthetic Data
-
-```bash
-python scripts/generate_data.py
-```
-```
-✅ 50,000 normal transactions generated
-✅ 2,500 fraudulent transactions injected
-✅ Saved to data/transactions.csv  (Fraud rate: 4.76%)
-```
-
-### Step 2 — Produce to Kafka
-
-```bash
-python scripts/producer.py
-```
-```
-✅ 52,500 transactions sent to Kafka topic: transactions
-✅ Success rate: 100.00%
-```
-
-### Step 3 — Consume & Detect (new terminal)
-
-```bash
-python scripts/consumer.py
-```
-```
-✅ Elasticsearch connection OK
-✅ Isolation Forest model ready
-[HH:MM:SS] 52500 docs | Fraud: 4.76% | Anomaly: 10.23%
-```
-
-### Step 4 — Setup Kibana (new terminal)
-
-```bash
-python scripts/setup_kibana.py
-```
-
-Then open **http://localhost:5601** 🎉
-
----
-
-## 🤖 Machine Learning
-
-**Algorithm:** Isolation Forest (unsupervised anomaly detection)
-
-```python
-IsolationForest(
-    contamination=0.1,   # Expected anomaly ratio: 10%
-    n_estimators=100,    # Number of trees
-    random_state=42
-)
-```
-
-**Detected Fraud Patterns:**
-
-| Pattern | Description | Confidence |
-|---|---|---|
-| `fan_out_money_laundering` | Single account → multiple recipients | 95% |
-| `impossible_movement` | Geographically impossible transactions | 98% |
-| `rapid_fire_bot` | 20+ transactions in 5 minutes | 99% |
-| `profile_mismatch` | Amount 50× the user's normal average | 92% |
-
----
-
-## 📁 Project Structure
-
-```
-fraud-detection/
-├── docker-compose.yml        # Kafka + Elasticsearch + Kibana
-├── requirements.txt          # Python dependencies
-├── config.py                 # Centralized configuration
-├── README.md
-│
-├── data/
-│   ├── users.csv             # User profiles (1,000 users)
-│   └── transactions.csv      # Generated transaction dataset
-│
-└── scripts/
-    ├── generate_data.py      # Synthetic data generator
-    ├── producer.py           # Kafka producer
-    ├── consumer.py           # Kafka consumer + ML + ES writer
-    ├── setup_elasticsearch.py
-    └── setup_kibana.py       # Kibana index pattern & dashboard setup
->>>>>>> 793ecd6 (feat: real-time fraud detection system with Kafka, Elasticsearch & ML)
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 🐛 Sorun Giderme
 
 ### Docker Container Başlamıyor
@@ -562,70 +364,10 @@ docker exec kafka kafka-consumer-groups --bootstrap-server kafka:9092 \
 
 # Consumer'ı yeniden çalıştır
 python scripts/consumer.py
-=======
-## 🛠️ Tech Stack
-
-| Layer | Technology |
-|---|---|
-| **Message Broker** | Apache Kafka |
-| **Stream Processing** | Python (kafka-python) |
-| **ML Model** | scikit-learn — Isolation Forest |
-| **Storage & Search** | Elasticsearch 8.x |
-| **Visualization** | Kibana |
-| **Data Generation** | NumPy, Pandas |
-| **Infrastructure** | Docker Compose |
-
----
-
-## 🐛 Troubleshooting
-
-<details>
-<summary><b>Docker containers not starting</b></summary>
-
-```bash
-docker-compose ps
-docker-compose logs elasticsearch
-docker-compose down -v && docker-compose up -d
-```
-</details>
-
-<details>
-<summary><b>Kafka connection error</b></summary>
-
-```bash
-docker exec kafka kafka-topics --list --bootstrap-server localhost:9092
-
-# Create topic manually if needed
-docker exec kafka kafka-topics --create --topic transactions \
-  --bootstrap-server localhost:9092 --partitions 1 --replication-factor 1
-```
-</details>
-
-<details>
-<summary><b>Elasticsearch connection error</b></summary>
-
-```bash
-curl http://localhost:9200/_cluster/health
-curl http://localhost:9200/_cat/indices?v
-```
-</details>
-
----
-
-## 📊 Expected Results
-
-```
-📊 SUMMARY STATISTICS:
-  • Processed Documents : 52,500
-  • Fraudulent           : 2,500  (4.76%)
-  • Anomalies Detected   : ~5,370 (10.23%)
-  • Success Rate         : 100.00%
->>>>>>> 793ecd6 (feat: real-time fraud detection system with Kafka, Elasticsearch & ML)
 ```
 
 ---
 
-<<<<<<< HEAD
 ## 🔧 Yapılandırma
 
 ### Veri Üretimi Parametreleri
@@ -712,23 +454,3 @@ Sorularınız veya sorunlarınız varsa, bir issue açın veya iletişime geçin
 
 **Son Güncelleme:** 12 Ocak 2026
 **Versiyon:** 1.0.0
-=======
-## 📚 References
-
-- [Apache Kafka Documentation](https://kafka.apache.org/documentation/)
-- [Elasticsearch Reference Guide](https://www.elastic.co/guide/en/elasticsearch/reference/current/index.html)
-- [Kibana User Guide](https://www.elastic.co/guide/en/kibana/current/index.html)
-- [Isolation Forest — scikit-learn](https://scikit-learn.org/stable/modules/generated/sklearn.ensemble.IsolationForest.html)
-
----
-
-## 📝 License
-
-This project is licensed under the **MIT License**.
-
----
-
-<div align="center">
-Made with ❤️ by <a href="https://github.com/MehmetPekerr">MehmetPekerr</a>
-</div>
->>>>>>> 793ecd6 (feat: real-time fraud detection system with Kafka, Elasticsearch & ML)
